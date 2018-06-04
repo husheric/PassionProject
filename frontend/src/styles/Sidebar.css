@@ -1,0 +1,16 @@
+.sidebar {
+	height: 100vh;
+	width: 40px;
+	background-color: #fad77b;
+}
+
+.extended-sidebar {
+	position: absolute;
+	background-color: #fad77b;
+	height: 100vh;
+	width: 350px;
+	border: 1px red solid;
+	top: 0px;
+	left: 40px;
+	z-index: 11;
+}
