@@ -21,7 +21,7 @@ class ExtendedSidebar extends Component {
 
 	render() {
 		const { type } = this.state
-		const { onLogin, user, sidebarPage, selected, onMarkerFilterChange, filters } = this.props;
+		const { onLogin, user, sidebarPage, selected, onMarkerFilterChange, markerFilters, onMapFilterChange, onMarkerScoreChange } = this.props;
 
 		switch (sidebarPage) {
 			case 'profile':
@@ -45,55 +45,48 @@ class ExtendedSidebar extends Component {
 				}
 				else {
 					return (
-						<div>this is the profile page while logged in!</div>
+						<div>
+							<p>Name: {user.full_name}</p>
+							<p>Email: {user.email}</p>
+							<p>Score: 1023</p>
+						</div>
 					)
 				}
 				
 			case 'filter':
 				return (
 					<div>
-					  <p>Pick a filter</p>
-				  	<div><input type='checkbox' value='all' onChange={onMarkerFilterChange} checked={filters.all} /> all</div>
-				  	<div><input type='checkbox' value='none' onChange={onMarkerFilterChange} checked={false} /> none</div>
-				  	<div><input type='checkbox' value='construction' onChange={onMarkerFilterChange} checked={filters.all || filters.construction} /> construction</div>
-				  	<div><input type='checkbox' value='crime' onChange={onMarkerFilterChange} checked={filters.all || filters.crime} /> crime</div>
-				  	<div><input type='checkbox' value='weather' onChange={onMarkerFilterChange} checked={filters.all || filters.weather} /> weather</div>
-				  	<div><input type='checkbox' value='other' onChange={onMarkerFilterChange} checked={filters.all || filters.other} /> other</div>
+						<div style={{ marginBottom: '100px' }}>
+						  <p className='fontSize'>Pick a filter</p>
+					  	<div><input type='checkbox' value='all' onChange={onMarkerFilterChange} checked={markerFilters.all} /> All</div>
+					  	<div><input type='checkbox' value='none' onChange={onMarkerFilterChange} checked={false} /> none</div>
+					  	<div><input type='checkbox' value='Construction' onChange={onMarkerFilterChange} checked={markerFilters.all || markerFilters.Construction} /> Construction</div>
+					  	<div><input type='checkbox' value='Crime' onChange={onMarkerFilterChange} checked={markerFilters.all || markerFilters.Crime} /> Crime</div>
+					  	<div><input type='checkbox' value='Weather' onChange={onMarkerFilterChange} checked={markerFilters.all || markerFilters.Weather} /> Weather</div>
+					  	<div><input type='checkbox' value='Other' onChange={onMarkerFilterChange} checked={markerFilters.all || markerFilters.Other} /> Other</div>
+						</div>
+						<div>
+							<p className='fontSize'>Pick a map</p>
+							<div><input type='button' value='Map' onClick={onMapFilterChange} name='mapfilter'/></div>
+					  	<div><input type='button' value='Heat Map' onClick={onMapFilterChange} name='mapfilter' /></div>
+						</div>
 					</div>
-
-
-					// 	  <div>
-					// 	    <input type="radio" id="contactChoice1"
-					// 	     name="contact" value="email">
-					// 	    <label for="contactChoice1">Email</label>
-
-					// 	    <input type="radio" id="contactChoice2"
-					// 	     name="contact" value="phone">
-					// 	    <label for="contactChoice2">Phone</label>
-
-					// 	    <input type="radio" id="contactChoice3"
-					// 	     name="contact" value="mail">
-					// 	    <label for="contactChoice3">Mail</label>
-					// 	  </div>
-					// 	  <div>
-					// 	    <button type="submit">Submit</button>
-					// 	  </div>
-					// 	</form>		
-					// </div>
 				)
 			case 'markerInfo':
 				if (!selected) {
-					return (<div>no marker selected</div>)
+					return (<div><p className='fontSize'>Please pick a marker!</p></div>)
 				}
 				else {
 					return (
 						<div>
 							<p>{selected.category}</p>
-							<p>{selected.timestamp}</p>
+							<p>Timestamp: {selected.timestamp}</p>
 							<p>{selected.description}</p>
-							<p>reported by Eric</p>
-							<input type='button' value='yes' />
-							<input type='button' value='no' />
+							<p>Reported by Eric</p>
+							<p>Score: {selected.score}</p>
+							<p>Is this still here?</p>
+							<input type='button' value='yes' onClick={(e) => onMarkerScoreChange(e)} />
+							<input type='button' value='no' onClick={(e) => onMarkerScoreChange(e)} />
 						</div>
 					)
 				}

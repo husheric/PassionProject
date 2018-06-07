@@ -19,7 +19,7 @@ class Sidebar extends Component {
 	}
 
 	render() {
-		const { onLogin, user, sidebarIsOpen, sidebarPage, onImageClick, selected, onMarkerFilterChange, filters } = this.props;
+		const { onLogin, user, sidebarIsOpen, sidebarPage, onImageClick, selected, onMarkerFilterChange, markerFilters, onMapFilterChange, onMarkerScoreChange } = this.props;
 	
 		return (
 			<div>
@@ -36,7 +36,9 @@ class Sidebar extends Component {
 							sidebarPage={sidebarPage}
 							selected={selected}
 							onMarkerFilterChange={onMarkerFilterChange}
-							filters={filters}
+							markerFilters={markerFilters}
+							onMapFilterChange={onMapFilterChange}
+							onMarkerScoreChange={onMarkerScoreChange}
 						/>
 					</div>
 				)}

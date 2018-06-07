@@ -9,10 +9,10 @@ import circleIcon from '../icons/circle-stroked-11.svg';
 
 const icon_dict = {
 	user: userLocationIcon,
-	weather: weatherIcon,
-	construction: constructionIcon,
-	crime: crimeIcon,
-	other: otherIcon,
+	Weather: weatherIcon,
+	Construction: constructionIcon,
+	Crime: crimeIcon,
+	Other: otherIcon,
 	new: circleIcon
 }
 

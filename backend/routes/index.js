@@ -13,13 +13,13 @@ router.get('/getMarkers', db.getMarkers);
 
 router.post('/insertNewMarker', db.insertNewMarker)
 
-router.post('/insertMarkerPositive', db.insertMarkerPositive)
+router.post('/insertMarkerScorePlus', db.insertMarkerScorePlus)
 
-router.post('/insertMarkerNegative', db.insertMarkerNegative)
+router.post('/insertMarkerScoreMinus', db.insertMarkerScoreMinus)
 
-router.get('/getMarkerPositive/:marker_id', db.getMarkerPositive)
+router.get('/getMarkerScorePlus/:marker_id', db.getMarkerScorePlus)
 
-router.get('/getMarkerNegative/:marker_id', db.getMarkerNegative)
+router.get('/getMarkerScoreMinus/:marker_id', db.getMarkerScoreMinus)
 
 router.post("/login", passport.authenticate("local"), (req, res) => {
   res.status(200).json({

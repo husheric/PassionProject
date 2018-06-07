@@ -1,5 +1,12 @@
 import React, { Component } from 'react';
 
+const categoryDict = {
+	crime: 'Crime',
+	construction: 'Construction',
+	other: 'Other',
+	weather: 'Weather'
+}
+
 class PopupComponent extends Component {
 	render() {
 		const { marker, onFormChange, type, onFormSubmit } = this.props
@@ -9,10 +16,11 @@ class PopupComponent extends Component {
 					<form onSubmit={onFormSubmit} >
 						<select onChange={onFormChange} name='category' value={marker.category} >
 							<option>Pick a Category</option>
-							<option value='construction'>Construction</option>
-							<option value='crime'>Crime</option>
-							<option value='weather'>Weather</option>
-							<option value='other'>Other</option>
+							<option value='Construction'>Construction</option>
+							<option value='Crime'>Crime</option>
+							<option value='Weather'>Weather</option>
+							<option value='Repair'>Repair</option>
+							<option value='Other'>Other</option>
 						</select>
 						<input placeholder='description' name='description' onChange={onFormChange} value={marker.description} />
 						<input type='submit' />
@@ -21,17 +29,17 @@ class PopupComponent extends Component {
 			)
 		}
 		else {
+			console.log(marker)
 			return (
 				<div className='popup popup_marker'>
 					<div className='popup_category'>
-						<h3>{marker.category}</h3>
+						<p>{marker.category}</p>
 					</div>
 					<div className='popup_description'>
-						<h1>{marker.description}</h1>
+						<p>{marker.description}</p>
 					</div>
-					<div className='popup_validate'>
-						<input type='button' value='yes' />
-						<input type='button' value='no' />
+					<div className='popup_score'>
+						<p>Score: {marker.score || 0}</p>
 					</div>
 				</div>
 			)

@@ -39,14 +39,14 @@ class Login extends Component {
 		const { full_name, email, password } = this.state;
 		const { onClickLoginRegister } = this.props;
 		return(
-			<div>
+			<div className='login'>
 				<h1>LOGIN PAGE</h1>
 				<form onSubmit={this.onSubmit}>
-					<input type='email' placeholder='email' value={email} name='email' onChange={this.onChange} />
-					<input type='password' placeholder='password' value={password} name='password' onChange={this.onChange} />
-					<input type='submit' value='login' />
+					<div><input type='email' placeholder='email' value={email} name='email' onChange={this.onChange} /></div>
+					<div><input type='password' placeholder='password' value={password} name='password' onChange={this.onChange} /></div>
+					<div><input type='submit' value='Submit' /></div>
 				</form>
-				<h3>or</h3><input type='button' value='Register' onClick={onClickLoginRegister}/>
+				<h3>or</h3><div><input type='button' value='Register' onClick={onClickLoginRegister}/></div>
 			</div>
 		)
 	}

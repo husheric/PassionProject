@@ -12,25 +12,32 @@ CREATE TABLE users (
 
 CREATE TABLE markers (
   id SERIAL PRIMARY KEY,
-  active BOOLEAN DEFAULT TRUE,
   reported_by INTEGER REFERENCES users (id),
-  timestamp timestamp DEFAULT CURRENT_TIMESTAMP,
-  category VARCHAR CHECK (category='weather' OR category='crime' OR category='construction' OR category='other') NOT NULL,
+  category VARCHAR CHECK (category='Weather' OR category='Crime' OR category='Construction' OR category='Repair' OR category='Other') NOT NULL,
   latitude VARCHAR NOT NULL,
   longitude VARCHAR NOT NULL,
-  description VARCHAR
+  description VARCHAR,
+  timestamp timestamp DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE positive (
+CREATE TABLE inactive_markers (
   id SERIAL PRIMARY KEY,
-  user_id INTEGER REFERENCES users (id),
-  marker_id INTEGER REFERENCES markers (id)
+  marker_id INTEGER REFERENCES markers (id) NOT NULL,
+  timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE negative (
+CREATE TABLE markers_score_plus (
   id SERIAL PRIMARY KEY,
-  user_id INTEGER REFERENCES users (id),
-  marker_id INTEGER REFERENCES markers (id)
+  reported_by INTEGER REFERENCES users (id) NOT NULL,
+  marker_id INTEGER REFERENCES markers (id) NOT NULL,
+  timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE markers_score_minus (
+  id SERIAL PRIMARY KEY,
+  reported_by INTEGER REFERENCES users (id) NOT NULL,
+  marker_id INTEGER REFERENCES markers (id) NOT NULL,
+  timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 INSERT INTO users (password_digest, email, full_name)

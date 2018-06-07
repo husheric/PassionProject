@@ -48,15 +48,15 @@ class Register extends Component {
 		const { full_name, email, password } = this.state;
 		const { onClickLoginRegister } = this.props;
 		return(
-			<div>
+			<div className='register'>
 				<h1>REGISTER PAGE</h1>
 				<form onSubmit={this.onSubmit}>
-					<input placeholder='Full Name' value={full_name} name='full_name' onChange={this.onChange} />
-					<input type='email' placeholder='email' value={email} name='email' onChange={this.onChange} />
-					<input type='password' placeholder='password' value={password} name='password' onChange={this.onChange} />
-					<input type='submit' value='register' />
+					<div><input placeholder='Full Name' value={full_name} name='full_name' onChange={this.onChange} /></div>
+					<div><input type='email' placeholder='email' value={email} name='email' onChange={this.onChange} /></div>
+					<div><input type='password' placeholder='password' value={password} name='password' onChange={this.onChange} /></div>
+					<div><input type='submit' value='Submit' /></div>
 				</form>
-				<h3>or</h3><input type='button' value='Login' onClick={onClickLoginRegister}/>
+				<h3>or</h3><div><input type='button' value='Login' onClick={onClickLoginRegister}/></div>
 			</div>
 		)
 	}

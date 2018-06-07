@@ -13,6 +13,7 @@ class App extends Component {
 	constructor() {
 		super();
 
+		// this.test();
 		this.getMarkers();
 
 		this.state = {
@@ -28,26 +29,66 @@ class App extends Component {
 			],
 			sidebarIsOpen: false,
 			sidebarPage: 'profile',
-			filters: {
+			markerFilters: {
 				all: true,
 				construction: false,
 				weather: false,
 				crime: false,
 				other: false,
 				user: true
-			}
+			},
+			mapFilter: 'Heat Map'
 		};
-
 	}
 
+	// gets markers + points for the markers
 	getMarkers = () => {
 		axios.get(`/getMarkers`)
 			.then(res => {
+				const markers = res.data.data;
+				markers.forEach(marker => {
+					marker.score = 1
+					axios.get(`/getMarkerScorePlus/${marker.id}`)
+						.then(res => {
+							// const plusScore = Number(res.data.data[0].count);
+							const plusScore = res.data.data
+							marker.score += plusScore.length
+
+							axios.get(`/getMarkerScoreMinus/${marker.id}`)
+								.then(res => {
+									const minusScore = res.data.data
+									marker.score -= minusScore.length
+								})
+								.catch( err => {
+									console.log(err)
+								})
+
+						})
+						.catch( err => {
+							console.log(err)
+						})
+				})
+
 				this.setState({
-					markers: [...this.state.markers, ...res.data.data]
+					markers: [...this.state.markers, ...markers]
 				})
 			})
+			.catch(err => {
+				console.log(err)
+			})
 	}
+
+	// getMarkers = () => {
+	// 	axios.get(`/getMarkers`)
+	// 		.then(res => {
+	// 			this.setState({
+	// 				markers: [...this.state.markers, ...res.data.data]
+	// 			})
+	// 		})
+	// 		.catch(err => {
+	// 			console.log(err)
+	// 		})
+	// }
 
 	getUserLocation = () => {
 		const { coords } = this.props 
@@ -120,9 +161,15 @@ class App extends Component {
 
 	onChildClick = (key, marker) => {
 		const { selected, markers, sidebarIsOpen } = this.state;
+		const selectedCopy = this.state.markers[marker.index];
+
+		if (marker.index) {
+			selectedCopy.index = marker.index
+		}
+
 		if (sidebarIsOpen) {
 			this.setState({
-				selected: this.state.markers[marker.index],
+				selected: selectedCopy,
 				sidebarPage: 'markerInfo'
 			})
 		}
@@ -172,7 +219,8 @@ class App extends Component {
 				category: newReport.category, 
 				description: newReport.description, 
 				latitude: newReport.latitude, 
-				longitude: newReport.longitude
+				longitude: newReport.longitude,
+				score: 1
 			})
 			.then(res => {
 				const markersCopy = this.state.markers
@@ -216,7 +264,7 @@ class App extends Component {
 		}
 	}
 
-	// filters: {
+	// markerFilters: {
 	// 			all: false,
 	// 			construction: false,
 	// 			weather: false,
@@ -225,18 +273,12 @@ class App extends Component {
 	// 		}
 
 	onMarkerFilterChange = e => {
-		const { filters } = this.state
-		const filtersCopy = {...filters}
+		const { markerFilters } = this.state
+		const filtersCopy = {...markerFilters}
 
 		switch (e.target.value) {
 			case 'all':
-				filtersCopy.all = false
-				filtersCopy.construction = true
-				filtersCopy.weather = true
-				filtersCopy.crime = true
-				filtersCopy.other = true
-				
-				filtersCopy[e.target.value] = e.target.checked
+				filtersCopy.all = !filtersCopy.all
 				break;
 			case 'none':
 				filtersCopy.all = false
@@ -246,16 +288,72 @@ class App extends Component {
 				filtersCopy.other = false
 				break;
 			default:
-				filtersCopy[e.target.value] = e.target.checked	
+				// filtersCopy[e.target.value] = e.target.checked
+				filtersCopy.all = false
+				filtersCopy[e.target.value] = !markerFilters[e.target.value]
 		}
 		this.setState({
-			filters: filtersCopy
+			markerFilters: filtersCopy
+		})
+	}
+
+	onInsertMarkerScore = e => {
+		const { user, marker } = this.state
+		/*
+			add score locally after inserting
+			determine timer = score + timestamp of latest score
+			highlights button pressed by person to prevent multiple submissions
+		*/
+
+		axios.post(`/insertMarkerScore`, {
+			user_id: this.state.user.id,
+			marker_id: this.state.marker,
+			score: Number(e.target.name)
+		})
+			.then(res => {
+				this.setState({
+					markers: [...this.state.markers, ...res.data.data]
+				})
+			})
+	}
+
+	onMarkerScoreChange = (e) => {
+		e.preventDefault();
+		const { markers, selected } = this.state
+		const selectedCopy = {...selected};
+		const markersCopy = markers;
+
+		if (e.target.value === 'yes') {
+			selectedCopy.score = selectedCopy.score + 1
+		} else {
+			selectedCopy.score = selectedCopy.score - 1
+			if (selectedCopy.score < 0) {
+				markersCopy.splice(selectedCopy.index, 1)
+				this.setState({
+					selected: null,
+					markers: markersCopy
+				})
+				return;
+			}
+		}
+		markersCopy[selectedCopy.index] = selectedCopy;
+
+		this.setState({
+			markers: markersCopy,
+			selected: selectedCopy
+		})
+	}
+
+	onMapFilterChange = e => {
+		this.setState({
+			mapFilter: e.target.value
 		})
 	}
 
   render() {
-  	const { center, zoom, draggable, newReport, selected, markers, user, sidebarIsOpen, sidebarPage, filters } = this.state;
+  	const { center, zoom, draggable, newReport, selected, markers, user, sidebarIsOpen, sidebarPage, markerFilters, mapFilter } = this.state;
   	this.getUserLocation();
+  	// console.log(this.state.markers)
 
     return (
       <div className='container'>
@@ -267,7 +365,9 @@ class App extends Component {
 					onImageClick={this.onImageClick}
 					selected={selected}
 					onMarkerFilterChange={this.onMarkerFilterChange}
-					filters={filters}
+					markerFilters={markerFilters}
+					onMapFilterChange={this.onMapFilterChange}
+					onMarkerScoreChange={this.onMarkerScoreChange}
     			//needs state newReport, selected, that's it, need to prevent popup if open
       	/>
         <Map 
@@ -286,7 +386,8 @@ class App extends Component {
 					onFormChange={this.onFormChange}
 					onFormSubmit={this.onFormSubmit}
 					sidebarIsOpen={sidebarIsOpen}
-					filters={filters}
+					markerFilters={markerFilters}
+					mapFilter={mapFilter}
         />
       </div>
     );
