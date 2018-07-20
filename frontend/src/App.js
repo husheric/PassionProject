@@ -37,7 +37,7 @@ class App extends Component {
 				other: false,
 				user: true
 			},
-			mapFilter: 'Heat Map'
+			mapFilter: 'Map'
 		};
 	}
 
@@ -77,18 +77,6 @@ class App extends Component {
 				console.log(err)
 			})
 	}
-
-	// getMarkers = () => {
-	// 	axios.get(`/getMarkers`)
-	// 		.then(res => {
-	// 			this.setState({
-	// 				markers: [...this.state.markers, ...res.data.data]
-	// 			})
-	// 		})
-	// 		.catch(err => {
-	// 			console.log(err)
-	// 		})
-	// }
 
 	getUserLocation = () => {
 		const { coords } = this.props 
@@ -263,14 +251,6 @@ class App extends Component {
 			})
 		}
 	}
-
-	// markerFilters: {
-	// 			all: false,
-	// 			construction: false,
-	// 			weather: false,
-	// 			crime: false,
-	// 			other: false
-	// 		}
 
 	onMarkerFilterChange = e => {
 		const { markerFilters } = this.state
