@@ -21,6 +21,8 @@ router.get('/getMarkerScorePlus/:marker_id', db.getMarkerScorePlus)
 
 router.get('/getMarkerScoreMinus/:marker_id', db.getMarkerScoreMinus)
 
+
+
 router.post("/login", passport.authenticate("local"), (req, res) => {
   res.status(200).json({
     user: req.user,
@@ -30,5 +32,7 @@ router.post("/login", passport.authenticate("local"), (req, res) => {
 });
 
 router.post('/createUser', db.createUser)
+
+router.get("/logout", db.logoutUser)
 
 module.exports = router;

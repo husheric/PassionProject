@@ -37,7 +37,7 @@ class App extends Component {
 				other: false,
 				user: true
 			},
-			mapFilter: 'Heat Map'
+			mapFilter: 'Map'
 		};
 	}
 
@@ -78,18 +78,6 @@ class App extends Component {
 			})
 	}
 
-	// getMarkers = () => {
-	// 	axios.get(`/getMarkers`)
-	// 		.then(res => {
-	// 			this.setState({
-	// 				markers: [...this.state.markers, ...res.data.data]
-	// 			})
-	// 		})
-	// 		.catch(err => {
-	// 			console.log(err)
-	// 		})
-	// }
-
 	getUserLocation = () => {
 		const { coords } = this.props 
 		const { shouldMapCenterOnUserCoord, markers } = this.state
@@ -107,24 +95,28 @@ class App extends Component {
 	}
 
 	onNewReport = e => {
-		const { center, markers } = this.state;
-		const newReport = {
-			id: 'new',
-			reported_by: 1,
-			category: '',
-			description: '',
-			latitude: center.lat,
-			longitude: center.lng
+		const { center, markers, newReport } = this.state;
+
+		if (!newReport) {
+			const newReport = {
+				id: 'new',
+				reported_by: 1,
+				category: '',
+				description: '',
+				latitude: center.lat,
+				longitude: center.lng
+			}
+			this.setState({
+				newReport,
+				markers: [newReport, ...markers],
+				shouldMapCenterOnUserCoord: false,
+				selected: false
+			})
 		}
-		this.setState({
-			newReport,
-			markers: [newReport, ...markers],
-			shouldMapCenterOnUserCoord: false,
-			selected: false
-		})
 	}
 
 	onMapChange = e => {
+		console.log(e.center)
 		this.setState({
 			center: e.center,
 			zoom: e.zoom
@@ -237,13 +229,14 @@ class App extends Component {
 	}
 
 	onLogin = user => {
-		const { id, email, full_name } = user;
-		console.log('logged user in')
+		console.log(user)
+		const { id, email, full_name, username } = user;
 		this.setState({
 			user: {
 				id,
 				email,
-				full_name
+				full_name,
+				username
 			}
 		})
 	}
@@ -263,14 +256,6 @@ class App extends Component {
 			})
 		}
 	}
-
-	// markerFilters: {
-	// 			all: false,
-	// 			construction: false,
-	// 			weather: false,
-	// 			crime: false,
-	// 			other: false
-	// 		}
 
 	onMarkerFilterChange = e => {
 		const { markerFilters } = this.state
@@ -353,7 +338,6 @@ class App extends Component {
   render() {
   	const { center, zoom, draggable, newReport, selected, markers, user, sidebarIsOpen, sidebarPage, markerFilters, mapFilter } = this.state;
   	this.getUserLocation();
-  	// console.log(this.state.markers)
 
     return (
       <div className='container'>

@@ -5,18 +5,22 @@ const db = require("../db/index");
 const init = require("./passport");
 const authHelpers = require("./helpers");
 
-const options = {
-  usernameField: 'email',
-  passwordField: 'password'
-}
+// const options = {
+//   usernameField: 'email',
+//   passwordField: 'password'
+// }
+
+const options = {};
 
 init();
 
 passport.use(
-  new LocalStrategy(options, (email, password, done) => {
+  new LocalStrategy(options, (username, password, done) => {
     console.log("trying to authenticate");
+    const loginType = username.includes('@') ? 'email' : 'username';
+
     db
-      .any("SELECT * FROM users WHERE email=$1", [email])
+      .any(`SELECT * FROM users WHERE ${loginType}=$1`, [username])
       .then(rows => {
         const user = rows[0];
         console.log("user: ", user);

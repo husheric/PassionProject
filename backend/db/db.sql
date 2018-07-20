@@ -7,7 +7,8 @@ CREATE TABLE users (
   id SERIAL PRIMARY KEY,
   password_digest VARCHAR NOT NULL,
   email VARCHAR UNIQUE NOT NULL,
-  full_name VARCHAR NOT NULL
+  full_name VARCHAR NOT NULL,
+  username VARCHAR UNIQUE NOT NULL 
 );
 
 CREATE TABLE markers (
@@ -40,8 +41,8 @@ CREATE TABLE markers_score_minus (
   timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-INSERT INTO users (password_digest, email, full_name)
-  VALUES ('$2a$10$uvjiYmfuOODIuYOuSb5S/e6TCyLeT3QNGt60oe/IucOPJbPHDbmhq', 'ericliu93@gmail.com', 'Eric Liu');
+INSERT INTO users (password_digest, email, full_name, username)
+  VALUES ('$2a$10$uvjiYmfuOODIuYOuSb5S/e6TCyLeT3QNGt60oe/IucOPJbPHDbmhq', 'ericliu93@gmail.com', 'Eric Liu', 'eric');
 
 -- INSERT INTO markers (reported_by, category, latitude, longitude, description)
 --   VALUES (1, 'weather', '40.7469446', '-73.951878', 'fallen tree'),

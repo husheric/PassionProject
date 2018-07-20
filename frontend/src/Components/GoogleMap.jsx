@@ -73,8 +73,7 @@ class Map extends Component {
 	}
 
 	render() {
-		const { center, zoom, draggable, newReport, selected, markers, onNewReport, onChange, onMarkerDrag, onChildMouseDown, onChildMouseUp, onChildClick, onFormChange, onFormSubmit, sidebarIsOpen, markerFilters, mapFilter } = this.props;
-		// [37.775, -122.434]
+		const { center, zoom, draggable, newReport, selected, markers, onNewReport, onMapChange, onMarkerDrag, onChildMouseDown, onChildMouseUp, onChildClick, onFormChange, onFormSubmit, sidebarIsOpen, markerFilters, mapFilter } = this.props;
 
 		switch (mapFilter) {
 			case 'Map':
@@ -86,7 +85,7 @@ class Map extends Component {
 		          options={{ styles: map_options }}
 		          zoom={zoom}
 		          draggable={draggable}
-		          onChange={onChange}
+		          onChange={onMapChange}
 		          onChildClick={onChildClick}
 		    			onChildMouseDown={onChildMouseDown}
 		    			onChildMouseUp={onChildMouseUp}

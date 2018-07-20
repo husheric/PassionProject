@@ -6,7 +6,7 @@ class Login extends Component {
 		super();
 
 		this.state = {
-			email: '',
+			user: '',
 			password: '',
 		}
 	}
@@ -20,15 +20,15 @@ class Login extends Component {
 	onSubmit = e => {
 		e.preventDefault()
 
-		const { email, password } = this.state;
+		const { user, password } = this.state;
+		const { onLogin } = this.props;
+
 		axios.post(`/login`, {
-				email: email.toLowerCase(),
+				username: user.toLowerCase(),
 				password
 			})
 			.then(res => {
-				// console.log(res)
-				this.props.onLogin(res.data.user)
-				// set the state in app of user res.user = { id, email, full name, image link}
+				onLogin(res.data.user)
 			})
 			.catch(err => {
 				console.log(err)
@@ -36,13 +36,13 @@ class Login extends Component {
 	}
 
 	render() {
-		const { full_name, email, password } = this.state;
+		const { user, password } = this.state;
 		const { onClickLoginRegister } = this.props;
 		return(
 			<div className='login'>
 				<h1>LOGIN PAGE</h1>
 				<form onSubmit={this.onSubmit}>
-					<div><input type='email' placeholder='email' value={email} name='email' onChange={this.onChange} /></div>
+					<div><input type='text' placeholder='Username or Email' value={user} name='user' onChange={this.onChange} /></div>
 					<div><input type='password' placeholder='password' value={password} name='password' onChange={this.onChange} /></div>
 					<div><input type='submit' value='Submit' /></div>
 				</form>
