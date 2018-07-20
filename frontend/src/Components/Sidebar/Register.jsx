@@ -23,10 +23,11 @@ class Register extends Component {
 		e.preventDefault();
 
 		const { full_name, email, password, username } = this.state;
+		const { onLogin } = this.props
 
 		axios.post(`/createUser`, { full_name, email, password, username })
 			.then(res => {
-				console.log('register: ', res)
+				onLogin(res.data)
 			})
 			.catch(err => {
 				console.log(err)
