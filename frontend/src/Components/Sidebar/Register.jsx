@@ -32,65 +32,6 @@ class Register extends Component {
 			.catch(err => {
 				console.log(err)
 			})
-
-
-		/*
-		
-		handleRegisterFormSubmit = e => {
-    e.preventDefault();
-
-    const { username, password, full_name, email } = this.state;
-    axios
-      .post("/users/new", { username, password, full_name, email })
-      .then(res => {
-        axios
-          .post("/users/login", { username, password })
-          .then(res => {
-            this.setState({
-              userStatus: 'success'
-            })
-          })
-          .catch(err => {
-            this.setState({
-              message: 'Created account.  Error logging in'
-            })
-          }) 
-      })
-      .catch(err => {
-        this.setState({
-          username: "",
-          password: "",
-          message: "Error inserting user"
-        });
-      });  
-  }
-
-
-		
-		OLD CODE, PROBABLY DON'T NEED
-
-		axios.post(`/createUser`, {
-				full_name,
-				email: email.toLowerCase(),
-				password
-			})
-			.then(res => {
-				axios.post(`/login`, {
-						email,
-						password
-					})
-					.then(res => {
-						this.props.onLogin(res.data.user)
-						// set the state in app of user res.user = { id, email, full name, image link}
-					})
-					.catch(err => {
-						console.log(err)
-					})
-			})
-			.catch(err => {
-				console.log(err)
-			})
-			*/
 	}
 
 	render() {

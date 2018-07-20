@@ -28,9 +28,7 @@ class Login extends Component {
 				password
 			})
 			.then(res => {
-				// console.log('login success', res)
 				onLogin(res.data.user)
-				// set the state in app of user res.user = { id, email, full name, image link}
 			})
 			.catch(err => {
 				console.log(err)

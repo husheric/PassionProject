@@ -95,24 +95,28 @@ class App extends Component {
 	}
 
 	onNewReport = e => {
-		const { center, markers } = this.state;
-		const newReport = {
-			id: 'new',
-			reported_by: 1,
-			category: '',
-			description: '',
-			latitude: center.lat,
-			longitude: center.lng
+		const { center, markers, newReport } = this.state;
+
+		if (!newReport) {
+			const newReport = {
+				id: 'new',
+				reported_by: 1,
+				category: '',
+				description: '',
+				latitude: center.lat,
+				longitude: center.lng
+			}
+			this.setState({
+				newReport,
+				markers: [newReport, ...markers],
+				shouldMapCenterOnUserCoord: false,
+				selected: false
+			})
 		}
-		this.setState({
-			newReport,
-			markers: [newReport, ...markers],
-			shouldMapCenterOnUserCoord: false,
-			selected: false
-		})
 	}
 
 	onMapChange = e => {
+		console.log(e.center)
 		this.setState({
 			center: e.center,
 			zoom: e.zoom
@@ -334,8 +338,6 @@ class App extends Component {
   render() {
   	const { center, zoom, draggable, newReport, selected, markers, user, sidebarIsOpen, sidebarPage, markerFilters, mapFilter } = this.state;
   	this.getUserLocation();
-
-  	console.log('user: ', user)
 
     return (
       <div className='container'>
