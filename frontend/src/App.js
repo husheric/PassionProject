@@ -225,7 +225,8 @@ class App extends Component {
 	}
 
 	onLogin = user => {
-		const { id, email, full_name, username } = user.data;
+		console.log(user)
+		const { id, email, full_name, username } = user;
 		this.setState({
 			user: {
 				id,
@@ -333,6 +334,8 @@ class App extends Component {
   render() {
   	const { center, zoom, draggable, newReport, selected, markers, user, sidebarIsOpen, sidebarPage, markerFilters, mapFilter } = this.state;
   	this.getUserLocation();
+
+  	console.log('user: ', user)
 
     return (
       <div className='container'>

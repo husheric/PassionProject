@@ -27,7 +27,7 @@ class Register extends Component {
 
 		axios.post(`/createUser`, { full_name, email, password, username })
 			.then(res => {
-				onLogin(res.data)
+				onLogin(res.data.data)
 			})
 			.catch(err => {
 				console.log(err)
