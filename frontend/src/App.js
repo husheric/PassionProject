@@ -116,7 +116,6 @@ class App extends Component {
 	}
 
 	onMapChange = e => {
-		console.log(e.center)
 		this.setState({
 			center: e.center,
 			zoom: e.zoom
@@ -229,7 +228,6 @@ class App extends Component {
 	}
 
 	onLogin = user => {
-		console.log(user)
 		const { id, email, full_name, username } = user;
 		this.setState({
 			user: {
