@@ -9,24 +9,16 @@ import filterIcon from '../icons/002-filter.svg'
 import profileIcon from '../icons/003-user.svg'
 
 class Sidebar extends Component {
-	constructor() {
-		super();
-
-		this.state = {
-			// sidebarIsOpen: false,
-			// sidebarPage: 'profile'
-		}
-	}
-
 	render() {
 		const { onLogin, user, sidebarIsOpen, sidebarPage, onImageClick, selected, onMarkerFilterChange, markerFilters, onMapFilterChange, onMarkerScoreChange } = this.props;
 	
 		return (
 			<div>
 				<div className='sidebar' >
-					<img src={profileIcon} height='50px' width='50px' name='profile' onClick={onImageClick} />
-					<img src={filterIcon} height='50px' width='50px' name='filter' onClick={onImageClick} />
-					<img src={markerIcon} height='50px' width='50px' name='markerInfo' onClick={onImageClick} />
+					<img src={profileIcon} className='sidebar-icon' name='profile' onClick={onImageClick} />
+					<img src={filterIcon} className='sidebar-icon' name='filter' onClick={onImageClick} />
+					<img src={markerIcon} className='sidebar-icon' name='markerInfo' onClick={onImageClick} />
+					<div  className='sidebar-extender'></div>
 				</div>
 				{sidebarIsOpen && (
 					<div className='extended-sidebar'>

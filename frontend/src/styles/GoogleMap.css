@@ -16,7 +16,7 @@
 	top: -80px;
 }
 
-.popup_marker {
+.popup-marker {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
@@ -24,15 +24,6 @@
 	/*text-align: center;*/
 }
 
-.popup_category {
+.popup-category {
 	font-size: 1.5em;
-}
-
-popup_description {
-
-}
-popup_score
-
-.popup_new {
-
 }

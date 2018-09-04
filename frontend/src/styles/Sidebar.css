@@ -20,6 +20,18 @@
 	flex-direction: column;
 }
 
-.fontSize {
+.font-size {
 	font-size: 2em;
+}
+
+.sidebar-icon {
+	height: 50px;
+	width: 50px;
+}
+
+.sidebar-extender {
+	position: absolute;
+	background-color: blue;
+	height: 100px;
+	width: 100px;
 }
