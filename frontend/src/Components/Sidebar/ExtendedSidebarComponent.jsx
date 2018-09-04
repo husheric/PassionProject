@@ -57,7 +57,7 @@ class ExtendedSidebar extends Component {
 				return (
 					<div>
 						<div style={{ marginBottom: '100px' }}>
-						  <p className='fontSize'>Pick a filter</p>
+						  <p className='font-size'>Pick a filter</p>
 					  	<div><input type='checkbox' value='all' onChange={onMarkerFilterChange} checked={markerFilters.all} /> All</div>
 					  	<div><input type='checkbox' value='none' onChange={onMarkerFilterChange} checked={false} /> none</div>
 					  	<div><input type='checkbox' value='Construction' onChange={onMarkerFilterChange} checked={markerFilters.all || markerFilters.Construction} /> Construction</div>
@@ -66,7 +66,7 @@ class ExtendedSidebar extends Component {
 					  	<div><input type='checkbox' value='Other' onChange={onMarkerFilterChange} checked={markerFilters.all || markerFilters.Other} /> Other</div>
 						</div>
 						<div>
-							<p className='fontSize'>Pick a map</p>
+							<p className='font-size'>Pick a map</p>
 							<div><input type='button' value='Map' onClick={onMapFilterChange} name='mapfilter'/></div>
 					  	<div><input type='button' value='Heat Map' onClick={onMapFilterChange} name='mapfilter' /></div>
 						</div>
@@ -74,7 +74,7 @@ class ExtendedSidebar extends Component {
 				)
 			case 'markerInfo':
 				if (!selected) {
-					return (<div><p className='fontSize'>Please pick a marker!</p></div>)
+					return (<div><p className='font-size'>Pick a marker!</p></div>)
 				}
 				else {
 					return (

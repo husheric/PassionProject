@@ -242,7 +242,7 @@ class App extends Component {
 	onImageClick = e => {
 		const { sidebarPage, sidebarIsOpen } = this.state;
 
-		if (e.target.name === sidebarPage) {
+		if (e.target.name === sidebarPage || !e.target.name) {
 			this.setState({
 				sidebarIsOpen: !sidebarIsOpen
 			})

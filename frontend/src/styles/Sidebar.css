@@ -8,10 +8,10 @@
 	position: absolute;
 	background-color: #2b2b2b;
 	height: 100vh;
-	width: 350px;
+	width: 300px;
 	top: 0px;
 	left: 40px;
-	z-index: 11;
+	z-index: 1;
 	color: white;
 }
 
@@ -20,6 +20,20 @@
 	flex-direction: column;
 }
 
-.fontSize {
+.font-size {
 	font-size: 2em;
+}
+
+.sidebar-icon {
+	height: 50px;
+	width: 50px;
+	z-index: 1;
+}
+
+.extended-sidebar-close {
+	position: absolute;
+	top: 0;
+	right: 0;
+	height: 25px;
+	width: 25px;
 }
