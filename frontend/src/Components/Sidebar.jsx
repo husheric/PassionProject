@@ -7,6 +7,7 @@ import '../styles/Sidebar.css';
 import markerIcon from '../icons/001-map.svg'
 import filterIcon from '../icons/002-filter.svg'
 import profileIcon from '../icons/003-user.svg'
+import closeIcon from '../icons/close.svg'
 
 class Sidebar extends Component {
 	render() {
@@ -21,7 +22,7 @@ class Sidebar extends Component {
 				</div>
 				{sidebarIsOpen && (
 					<div className='extended-sidebar'>
-						<div className='extended-sidebar-close' onClick={onImageClick}>X</div>
+						<img src={closeIcon} className='extended-sidebar-close sidebar-icon' onClick={onImageClick} />
 						<ExtendedSidebarComponent 
 							onLogin={onLogin}
 							user={user}
