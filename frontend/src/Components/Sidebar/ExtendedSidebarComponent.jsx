@@ -74,7 +74,7 @@ class ExtendedSidebar extends Component {
 				)
 			case 'markerInfo':
 				if (!selected) {
-					return (<div><p className='font-size'>Please pick a marker!</p></div>)
+					return (<div><p className='font-size'>Pick a marker!</p></div>)
 				}
 				else {
 					return (

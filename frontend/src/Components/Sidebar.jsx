@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 
-import ExtendedComponent from './Sidebar/ExtendedComponent'
+import ExtendedSidebarComponent from './Sidebar/ExtendedSidebarComponent'
 import '../styles/Sidebar.css';
 
 import markerIcon from '../icons/001-map.svg'
@@ -18,11 +18,11 @@ class Sidebar extends Component {
 					<img src={profileIcon} className='sidebar-icon' name='profile' onClick={onImageClick} />
 					<img src={filterIcon} className='sidebar-icon' name='filter' onClick={onImageClick} />
 					<img src={markerIcon} className='sidebar-icon' name='markerInfo' onClick={onImageClick} />
-					<div  className='sidebar-extender'></div>
 				</div>
 				{sidebarIsOpen && (
 					<div className='extended-sidebar'>
-						<ExtendedComponent 
+						<div className='extended-sidebar-close' onClick={onImageClick}>X</div>
+						<ExtendedSidebarComponent 
 							onLogin={onLogin}
 							user={user}
 							sidebarPage={sidebarPage}
