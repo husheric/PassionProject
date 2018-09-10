@@ -1,8 +1,9 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
-import Register from './Register'
-import Login from './Login'
-
+import Register from './Register';
+import Login from './Login';
+import FiltersComponent from './FiltersComponent';
+import MarkerInfoComponent from './MarkerInfoComponent';
 
 class ExtendedSidebar extends Component {
 	constructor(props) {
@@ -10,19 +11,18 @@ class ExtendedSidebar extends Component {
 
 		this.state = {
 			type: 'Register'
-		}
+		};
 	}
 
 	onClickLoginRegister = e => {
 		this.setState({
 			type: e.target.value
-		})
+		});
 	}
 
 	render() {
-		const { type } = this.state
+		const { type } = this.state;
 		const { onLogin, user, sidebarPage, selected, onMarkerFilterChange, markerFilters, onMapFilterChange, onMarkerScoreChange } = this.props;
-
 		switch (sidebarPage) {
 			case 'profile':
 				if (!user) {
@@ -55,41 +55,19 @@ class ExtendedSidebar extends Component {
 				
 			case 'filter':
 				return (
-					<div>
-						<div style={{ marginBottom: '100px' }}>
-						  <p className='font-size'>Pick a filter</p>
-					  	<div><input type='checkbox' value='all' onChange={onMarkerFilterChange} checked={markerFilters.all} /> All</div>
-					  	<div><input type='checkbox' value='none' onChange={onMarkerFilterChange} checked={false} /> none</div>
-					  	<div><input type='checkbox' value='Construction' onChange={onMarkerFilterChange} checked={markerFilters.all || markerFilters.Construction} /> Construction</div>
-					  	<div><input type='checkbox' value='Crime' onChange={onMarkerFilterChange} checked={markerFilters.all || markerFilters.Crime} /> Crime</div>
-					  	<div><input type='checkbox' value='Weather' onChange={onMarkerFilterChange} checked={markerFilters.all || markerFilters.Weather} /> Weather</div>
-					  	<div><input type='checkbox' value='Other' onChange={onMarkerFilterChange} checked={markerFilters.all || markerFilters.Other} /> Other</div>
-						</div>
-						<div>
-							<p className='font-size'>Pick a map</p>
-							<div><input type='button' value='Map' onClick={onMapFilterChange} name='mapfilter'/></div>
-					  	<div><input type='button' value='Heat Map' onClick={onMapFilterChange} name='mapfilter' /></div>
-						</div>
-					</div>
+					<FiltersComponent 
+						onMarkerFilterChange={onMarkerFilterChange}
+						markerFilters={markerFilters}
+						onMapFilterChange={onMapFilterChange}
+					/>
 				)
 			case 'markerInfo':
-				if (!selected) {
-					return (<div><p className='font-size'>Pick a marker!</p></div>)
-				}
-				else {
-					return (
-						<div>
-							<p>{selected.category}</p>
-							<p>Timestamp: {selected.timestamp}</p>
-							<p>{selected.description}</p>
-							<p>Reported by Eric</p>
-							<p>Score: {selected.score}</p>
-							<p>Is this still here?</p>
-							<input type='button' value='yes' onClick={(e) => onMarkerScoreChange(e)} />
-							<input type='button' value='no' onClick={(e) => onMarkerScoreChange(e)} />
-						</div>
-					)
-				}
+				return (
+					<MarkerInfoComponent
+						selected={selected}
+						onMarkerScoreChange={onMarkerScoreChange}
+					/>
+				)
 		}
 	}
 }

@@ -30,11 +30,10 @@ class App extends Component {
 			sidebarIsOpen: false,
 			sidebarPage: 'profile',
 			markerFilters: {
-				all: true,
-				construction: false,
-				weather: false,
-				crime: false,
-				other: false,
+				construction: true,
+				weather: true,
+				crime: true,
+				other: true,
 				user: true
 			},
 			mapFilter: 'Map'
@@ -256,25 +255,9 @@ class App extends Component {
 	}
 
 	onMarkerFilterChange = e => {
-		const { markerFilters } = this.state
-		const filtersCopy = {...markerFilters}
-
-		switch (e.target.value) {
-			case 'all':
-				filtersCopy.all = !filtersCopy.all
-				break;
-			case 'none':
-				filtersCopy.all = false
-				filtersCopy.construction = false
-				filtersCopy.weather = false
-				filtersCopy.crime = false
-				filtersCopy.other = false
-				break;
-			default:
-				// filtersCopy[e.target.value] = e.target.checked
-				filtersCopy.all = false
-				filtersCopy[e.target.value] = !markerFilters[e.target.value]
-		}
+		const filtersCopy = this.state.markerFilters
+		filtersCopy[e.target.value] = !this.state.markerFilters[e.target.value]
+		console.log(filtersCopy)
 		this.setState({
 			markerFilters: filtersCopy
 		})
@@ -350,7 +333,6 @@ class App extends Component {
 					markerFilters={markerFilters}
 					onMapFilterChange={this.onMapFilterChange}
 					onMarkerScoreChange={this.onMarkerScoreChange}
-    			//needs state newReport, selected, that's it, need to prevent popup if open
       	/>
         <Map 
         	center={center}

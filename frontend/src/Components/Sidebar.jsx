@@ -22,7 +22,7 @@ class Sidebar extends Component {
 				</div>
 				{sidebarIsOpen && (
 					<div className='extended-sidebar'>
-						<img src={closeIcon} className='extended-sidebar-close sidebar-icon' onClick={onImageClick} />
+						<img src={closeIcon} className='extended-sidebar-close' onClick={onImageClick} />
 						<ExtendedSidebarComponent 
 							onLogin={onLogin}
 							user={user}

@@ -64,10 +64,10 @@ class Map extends Component {
 
 	filterMarkers = () => {
 		const { markerFilters, markers } = this.props
-		if (markerFilters.all) { return markers }
+		console.log(markerFilters, markers)
 
 		return markers.filter(marker => {
-			return markerFilters[marker.category]
+			return markerFilters[marker.category.toLowerCase()]
 		})
 		// return filteredMarkers
 	}
