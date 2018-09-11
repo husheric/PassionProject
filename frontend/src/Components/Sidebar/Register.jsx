@@ -39,15 +39,18 @@ class Register extends Component {
 		const { onClickLoginRegister } = this.props;
 		return(
 			<div className='register'>
-				<h1>REGISTER PAGE</h1>
-				<form onSubmit={this.onSubmit}>
-					<div><input placeholder='Username' value={username} name='username' onChange={this.onChange} /></div>
-					<div><input placeholder='Full Name' value={full_name} name='full_name' onChange={this.onChange} /></div>
-					<div><input type='email' placeholder='Email' value={email} name='email' onChange={this.onChange} /></div>
-					<div><input type='password' placeholder='Password' value={password} name='password' onChange={this.onChange} /></div>
-					<div><input type='submit' value='Submit' /></div>
-				</form>
-				<h3>or</h3><div><input type='button' value='Login' onClick={onClickLoginRegister}/></div>
+				<h1>REGISTER</h1>
+				<div>
+					<form onSubmit={this.onSubmit}>
+						<div><input className='form-text-input' placeholder='Username' value={username} name='username' onChange={this.onChange} /></div>
+						<div><input className='form-text-input' placeholder='Full Name' value={full_name} name='full_name' onChange={this.onChange} /></div>
+						<div><input className='form-text-input' type='email' placeholder='Email' value={email} name='email' onChange={this.onChange} /></div>
+						<div><input className='form-text-input' type='password' placeholder='Password' value={password} name='password' onChange={this.onChange} /></div>
+						<div className='submit-btn'><input type='submit' value='Register' /></div>
+					</form>
+				</div>
+				<h3>or</h3>
+				<input className='' type='button' value='Login' onClick={onClickLoginRegister}/>
 			</div>
 		)
 	}

@@ -201,9 +201,10 @@ const map_options = [
     },
     {
         "featureType": "road",
+        "elementType": "labels.text",
         "stylers": [
             {
-                "color": "#ffffff"
+                "color": "#747474"
             }
         ]
     },
