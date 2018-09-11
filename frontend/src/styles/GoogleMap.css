@@ -27,3 +27,11 @@
 .popup-category {
 	font-size: 1.5em;
 }
+
+.popup-close {
+	position: absolute;
+	top: 1px;
+	right: 1px;
+	height: 15px;
+	width: 15px;
+}

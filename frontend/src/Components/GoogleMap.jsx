@@ -72,7 +72,7 @@ class Map extends Component {
 	}
 
 	render() {
-		const { center, zoom, draggable, newReport, selected, markers, onNewReport, onMapChange, onMarkerDrag, onChildMouseDown, onChildMouseUp, onChildClick, onFormChange, onFormSubmit, sidebarIsOpen, markerFilters, mapFilter } = this.props;
+		const { center, zoom, draggable, newReport, selected, markers, onNewReport, onMapChange, onMarkerDrag, onChildMouseDown, onChildMouseUp, onChildClick, onFormChange, onFormSubmit, sidebarIsOpen, markerFilters, mapFilter, onClosePopup } = this.props;
 
 		switch (mapFilter) {
 			case 'Map':
@@ -108,8 +108,10 @@ class Map extends Component {
 			      		<PopupComponent
 			      			type='marker'
 			      			marker={selected}
+			      			onChildClick={onChildClick}
 			      			lat={selected.latitude}
 			      			lng={selected.longitude}
+			      			onClosePopup={onClosePopup}
 			      		/>
 			      	)}
 			      	{newReport && (

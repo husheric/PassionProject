@@ -1,15 +1,9 @@
 import React, { Component } from 'react';
-
-const categoryDict = {
-	crime: 'Crime',
-	construction: 'Construction',
-	other: 'Other',
-	weather: 'Weather'
-}
+import closeIcon from '../icons/close-black.svg'
 
 class PopupComponent extends Component {
 	render() {
-		const { marker, onFormChange, type, onFormSubmit } = this.props
+		const { marker, onFormChange, type, onFormSubmit, onClosePopup } = this.props
 		if (type === 'new') {
 			return (
 				<div className='popup'>
@@ -31,6 +25,7 @@ class PopupComponent extends Component {
 		else {
 			return (
 				<div className='popup popup-marker'>
+					<img src={closeIcon} className='popup-close' onClick={onClosePopup} />
 					<div className='popup-category'>
 						<p>{marker.category}</p>
 					</div>

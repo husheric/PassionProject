@@ -317,6 +317,12 @@ class App extends Component {
 		})
 	}
 
+	onClosePopup = () => {
+		this.setState({
+			selected: false
+		});
+	}
+
   render() {
   	const { center, zoom, draggable, newReport, selected, markers, user, sidebarIsOpen, sidebarPage, markerFilters, mapFilter } = this.state;
   	this.getUserLocation();
@@ -353,6 +359,7 @@ class App extends Component {
 					sidebarIsOpen={sidebarIsOpen}
 					markerFilters={markerFilters}
 					mapFilter={mapFilter}
+					onClosePopup={this.onClosePopup}
         />
       </div>
     );
