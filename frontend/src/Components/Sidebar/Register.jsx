@@ -46,7 +46,7 @@ class Register extends Component {
 						<div><input className='form-text-input' placeholder='Full Name' value={full_name} name='full_name' onChange={this.onChange} /></div>
 						<div><input className='form-text-input' type='email' placeholder='Email' value={email} name='email' onChange={this.onChange} /></div>
 						<div><input className='form-text-input' type='password' placeholder='Password' value={password} name='password' onChange={this.onChange} /></div>
-						<div className='submit-btn'><input className='' type='submit' value='Register' /></div>
+						<div className='submit-btn'><input type='submit' value='Register' /></div>
 					</form>
 				</div>
 				<h3>or</h3>

@@ -5,11 +5,11 @@ class MarkerInfoComponent extends Component {
 	render() {
 		const { selected, onMarkerScoreChange } = this.props
 		if (!selected) {
-			return (<div><p className='font-size'>Pick a marker!</p></div>)
+			return (<div className='marker-info'><h1 className='font-size'>Pick a marker!</h1></div>)
 		} else {
 			const date = new Date(selected.timestamp).toDateString();
 			return (
-				<div>
+				<div className='marker-info'>
 					<p>Category: {selected.category}</p>
 					<p>Timestamp: {date}</p>
 					<p>Description: {selected.description}</p>

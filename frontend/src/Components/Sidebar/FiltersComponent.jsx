@@ -5,7 +5,7 @@ class FiltersComponent extends Component {
 		const { onMarkerFilterChange, markerFilters, onMapFilterChange } = this.props;
 		return (
 			<div>
-				<div style={{ marginBottom: '100px' }}>
+				<div className='filter'>
 				  <p className='font-size'>Pick a filter</p>
 					<div><input type='checkbox' value='construction' onChange={onMarkerFilterChange} checked={markerFilters.construction} /> Construction</div>
 					<div><input type='checkbox' value='crime' onChange={onMarkerFilterChange} checked={markerFilters.crime} /> Crime</div>
