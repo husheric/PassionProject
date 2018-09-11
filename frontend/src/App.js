@@ -285,6 +285,7 @@ class App extends Component {
 
 	onMarkerScoreChange = (e) => {
 		e.preventDefault();
+		console.log(e)
 		const { markers, selected } = this.state
 		const selectedCopy = {...selected};
 		const markersCopy = markers;

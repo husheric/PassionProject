@@ -64,7 +64,6 @@ class Map extends Component {
 
 	filterMarkers = () => {
 		const { markerFilters, markers } = this.props
-		console.log(markerFilters, markers)
 
 		return markers.filter(marker => {
 			return markerFilters[marker.category.toLowerCase()]
