@@ -73,7 +73,7 @@ class Map extends Component {
 
 	render() {
 		const { center, zoom, draggable, newReport, selected, markers, onNewReport, onMapChange, onMarkerDrag, onChildMouseDown, onChildMouseUp, onChildClick, onFormChange, onFormSubmit, sidebarIsOpen, markerFilters, mapFilter, onClosePopup } = this.props;
-		console.log(markers)
+		console.log(zoom)
 		switch (mapFilter) {
 			case 'Map':
 				return (
@@ -102,6 +102,7 @@ class Map extends Component {
 			      			lng={marker.longitude}
 			      			index={i}
 			      			key={marker.id}
+			      			zoom={zoom}
 			      		/>
 			      	))}
 			      	{selected && !sidebarIsOpen && (

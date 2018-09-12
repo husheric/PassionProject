@@ -1,9 +1,17 @@
-.marker {
+.marker-big {
 	position: absolute;
 	height: 20px;
 	width: 20px;
 	left: -10px;
 	top: -10px;
+}
+
+.marker-small {
+	position: absolute;
+	height: 10px;
+	width: 10px;
+	left: -5px;
+	top: -5px;
 }
 
 .popup {

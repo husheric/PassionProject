@@ -20,10 +20,11 @@ const icon_dict = {
 
 class MarkerComponent extends Component {
 	render() {
-		const { category } = this.props;
+		const { category, zoom } = this.props;
+		const className = zoom < 14 ? 'marker-small' : 'marker-big';
 		return (
 			<div>
-				<img className='marker' src={icon_dict[category] || icon_dict.new} alt={category} />
+				<img className={className} src={icon_dict[category] || icon_dict.new} alt={category} />
 			</div>
 		)
 	}
