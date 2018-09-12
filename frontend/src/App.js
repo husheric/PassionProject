@@ -33,6 +33,7 @@ class App extends Component {
 				construction: true,
 				weather: true,
 				crime: true,
+				repair: true,
 				other: true,
 				user: true
 			},

@@ -66,7 +66,6 @@ class Map extends Component {
 		const { markerFilters, markers } = this.props
 
 		return markers.filter(marker => {
-			if (markerFilters)
 			return markerFilters[marker.category.toLowerCase()] || marker.category === '';
 		})
 		// return filteredMarkers
@@ -74,7 +73,7 @@ class Map extends Component {
 
 	render() {
 		const { center, zoom, draggable, newReport, selected, markers, onNewReport, onMapChange, onMarkerDrag, onChildMouseDown, onChildMouseUp, onChildClick, onFormChange, onFormSubmit, sidebarIsOpen, markerFilters, mapFilter, onClosePopup } = this.props;
-
+		console.log(markers)
 		switch (mapFilter) {
 			case 'Map':
 				return (
