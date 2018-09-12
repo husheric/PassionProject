@@ -6,9 +6,9 @@ class PopupComponent extends Component {
 		const { marker, onFormChange, type, onFormSubmit, onClosePopup } = this.props
 		if (type === 'new') {
 			return (
-				<div className='popup'>
+				<div className='popup-new'>
 					<form onSubmit={onFormSubmit} >
-						<select onChange={onFormChange} name='category' value={marker.category} >
+						<select className='select-form' onChange={onFormChange} name='category' value={marker.category} >
 							<option>Pick a Category</option>
 							<option value='Construction'>Construction</option>
 							<option value='Crime'>Crime</option>
@@ -16,8 +16,8 @@ class PopupComponent extends Component {
 							<option value='Repair'>Repair</option>
 							<option value='Other'>Other</option>
 						</select>
-						<input placeholder='description' name='description' onChange={onFormChange} value={marker.description} />
-						<input type='submit' />
+						<input className='new-report-description' placeholder='description' name='description' onChange={onFormChange} value={marker.description} />
+						<div className='new-report-submit'><input type='submit' /></div>
 					</form>
 				</div>
 			)
