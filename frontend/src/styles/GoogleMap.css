@@ -59,3 +59,16 @@
 	height: 15px;
 	width: 15px;
 }
+
+.report-component {
+	display: flex;
+	align-items: center;
+	background-color: white;
+	width: 75px;
+	border: 1px solid black;
+}
+
+.report-component-icon {
+	width: 18px;
+	height: 18px;
+}

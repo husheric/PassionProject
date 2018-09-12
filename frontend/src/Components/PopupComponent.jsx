@@ -33,7 +33,7 @@ class PopupComponent extends Component {
 						<p>{marker.description}</p>
 					</div>
 					<div className='popup-score'>
-						<p>Score: {marker.score || 0}</p>
+						<p>Score: {marker.score || 1}</p>
 					</div>
 				</div>
 			)
