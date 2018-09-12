@@ -5,7 +5,8 @@ import weatherIcon from '../icons/001-weather.svg';
 import crimeIcon from '../icons/002-crime.svg'
 import otherIcon from '../icons/003-other.svg'
 import constructionIcon from '../icons/004-construction.svg';
-import circleIcon from '../icons/circle-stroked-11.svg';
+import reportIcon from '../icons/report-icon.svg';
+import repairIcon from '../icons/repair-icon.svg';
 
 const icon_dict = {
 	user: userLocationIcon,
@@ -13,7 +14,8 @@ const icon_dict = {
 	Construction: constructionIcon,
 	Crime: crimeIcon,
 	Other: otherIcon,
-	new: circleIcon
+	Repair: repairIcon,
+	new: reportIcon
 }
 
 class MarkerComponent extends Component {

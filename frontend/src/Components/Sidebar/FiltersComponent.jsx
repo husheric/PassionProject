@@ -10,6 +10,7 @@ class FiltersComponent extends Component {
 					<div><input type='checkbox' value='construction' onChange={onMarkerFilterChange} checked={markerFilters.construction} /> Construction</div>
 					<div><input type='checkbox' value='crime' onChange={onMarkerFilterChange} checked={markerFilters.crime} /> Crime</div>
 					<div><input type='checkbox' value='weather' onChange={onMarkerFilterChange} checked={markerFilters.weather} /> Weather</div>
+					<div><input type='checkbox' value='repair' onChange={onMarkerFilterChange} checked={markerFilters.repair} /> Repair</div>
 					<div><input type='checkbox' value='other' onChange={onMarkerFilterChange} checked={markerFilters.other} /> Other</div>
 				</div>
 			</div>

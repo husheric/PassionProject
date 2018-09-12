@@ -20,10 +20,55 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	/*align-items: flex;*/
-	/*text-align: center;*/
 }
+
+.popup-new {
+	display: flex;
+	flex-direction: column;
+	position: absolute;
+	background-color: white;
+	border: 1px solid black;
+	height: 77px;
+	width: 160px;
+	left: -80px;
+	top: -88px;
+}
+
+.select-form {
+	width: 158px;
+}
+
+.new-report-description {
+	width: 158px;
+}
+
+.new-report-submit {
+	display: flex;
+	justify-content: center;
+}
+
 
 .popup-category {
 	font-size: 1.5em;
+}
+
+.popup-close {
+	position: absolute;
+	top: 1px;
+	right: 1px;
+	height: 15px;
+	width: 15px;
+}
+
+.report-component {
+	display: flex;
+	align-items: center;
+	background-color: white;
+	width: 75px;
+	border: 1px solid black;
+}
+
+.report-component-icon {
+	width: 18px;
+	height: 18px;
 }

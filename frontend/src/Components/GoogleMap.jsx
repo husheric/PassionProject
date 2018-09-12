@@ -66,14 +66,14 @@ class Map extends Component {
 		const { markerFilters, markers } = this.props
 
 		return markers.filter(marker => {
-			return markerFilters[marker.category.toLowerCase()]
+			return markerFilters[marker.category.toLowerCase()] || marker.category === '';
 		})
 		// return filteredMarkers
 	}
 
 	render() {
-		const { center, zoom, draggable, newReport, selected, markers, onNewReport, onMapChange, onMarkerDrag, onChildMouseDown, onChildMouseUp, onChildClick, onFormChange, onFormSubmit, sidebarIsOpen, markerFilters, mapFilter } = this.props;
-
+		const { center, zoom, draggable, newReport, selected, markers, onNewReport, onMapChange, onMarkerDrag, onChildMouseDown, onChildMouseUp, onChildClick, onFormChange, onFormSubmit, sidebarIsOpen, markerFilters, mapFilter, onClosePopup } = this.props;
+		console.log(markers)
 		switch (mapFilter) {
 			case 'Map':
 				return (
@@ -108,8 +108,10 @@ class Map extends Component {
 			      		<PopupComponent
 			      			type='marker'
 			      			marker={selected}
+			      			onChildClick={onChildClick}
 			      			lat={selected.latitude}
 			      			lng={selected.longitude}
+			      			onClosePopup={onClosePopup}
 			      		/>
 			      	)}
 			      	{newReport && (
